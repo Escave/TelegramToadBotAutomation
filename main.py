@@ -1,4 +1,5 @@
 from telethon import TelegramClient
+from telethon import functions
 from datetime import datetime, timedelta, date
 
 # Get it from https://my.telegram.org/
@@ -12,6 +13,7 @@ DEALER_JOB_PERIOD       = timedelta(hours=8, minutes=2)
 TOAD_OF_THE_DAY_PERIOD  = timedelta(days=1)
 
 MESSAGES_LIMIT = 100
+
 
 client = TelegramClient('session_name', API_ID, API_HASH)
 
@@ -36,7 +38,7 @@ def prepare_messages():
     time = datetime.today() + timedelta(minutes=2)
     for i in range(MESSAGES_LIMIT):
         messages.append({'msg': 'работа крупье', 'time': time})
-        messages.append({'msg': 'завершить работу', 'time': time - timedelta(hours=1)})
+        messages.append({'msg': 'завершить работу', 'time': time - timedelta(hours=6)})
         time += DEALER_JOB_PERIOD
 
     sorted_messages = sorted(messages, key=lambda msg_time: msg_time['time'])
@@ -45,6 +47,9 @@ def prepare_messages():
 
 
 async def main():
+    async for dialog in client.iter_dialogs():
+        pass
+
     entity = await client.get_entity(BOYS_ID)
     messages = prepare_messages()
 
