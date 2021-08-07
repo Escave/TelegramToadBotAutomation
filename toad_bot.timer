@@ -1,0 +1,11 @@
+[Unit]
+Description=Telegram toad bot
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=30m
+Persistent=true
+Unit=toad_bot.service
+
+[Install]
+WantedBy=timers.target

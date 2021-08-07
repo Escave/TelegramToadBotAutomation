@@ -1,0 +1,9 @@
+[Unit]
+Description=Telegram toad bot
+
+[Service]
+Type=simple
+ExecStart=python3 /usr/bin/toad_bot.py
+
+[Install]
+WantedBy=multi-user.target
