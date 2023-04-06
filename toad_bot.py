@@ -5,13 +5,17 @@ import pytz
 
 # Get it from https://my.telegram.org/
 API_ID = 
-API_HASH = ''
+API_HASH = 
 
 CHANNEL_NAME = 'В_айти в windows в бойз'
 
 FEED_TOAD_MSG = "покормить жабу"
 FEED_TOAD_PERIOD = timedelta(hours=6, minutes=2)
 FEED_TOAD_COUNT = 3
+
+FEED_MINITOAD_MSG = "покормить жабенка"
+FEED_MINITOAD_PERIOD = timedelta(hours=12, minutes=2)
+FEED_MINITOAD_COUNT = 3
 
 JOB_MSG = "работа крупье"
 JOB_PERIOD = timedelta(hours=8, minutes=2)
@@ -23,6 +27,10 @@ DAY_START = time(0, 1)
 
 TOAD_OF_THE_DAY_MSG = "жаба дня"
 TOAD_OF_THE_DAY_COUNT = 3
+
+MARRIAGE_MSG = "брак вознаграждение"
+MARRIAGE_PERIOD = timedelta(days=5, minutes=2)
+MARRIAGE_COUNT = 3
 
 
 class Message:
@@ -123,6 +131,10 @@ async def main():
     new_messages = []
     new_messages += prepare_daily_messages(scheduled_messages, TOAD_OF_THE_DAY_MSG, DAY_START, TOAD_OF_THE_DAY_COUNT)
     new_messages += prepare_messages(scheduled_messages, FEED_TOAD_MSG, FEED_TOAD_PERIOD, FEED_TOAD_COUNT)
+
+    new_messages += prepare_messages(scheduled_messages, FEED_MINITOAD_MSG, FEED_MINITOAD_PERIOD, FEED_MINITOAD_COUNT)
+
+    new_messages += prepare_messages(scheduled_messages, MARRIAGE_MSG, MARRIAGE_PERIOD, MARRIAGE_COUNT)
 
     job_messages = []
     job_messages += prepare_messages(scheduled_messages, JOB_MSG, JOB_PERIOD, JOB_COUNT)
